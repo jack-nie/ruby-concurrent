@@ -14,6 +14,6 @@ class Chopstick
   end
 
   def in_use?
-    @mutex.lock?
+    @mutex.locked?
   end
 end
