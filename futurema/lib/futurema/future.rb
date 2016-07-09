@@ -18,6 +18,8 @@ module Futurema
       resolved_future_or_raise[:value]
     end
 
+    alias value __getobj__
+
     def resolved_future_or_raise
       @resolved_future || @mutex.synchronize do
         @resolved_future ||= @queue.pop
