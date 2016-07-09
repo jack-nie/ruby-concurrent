@@ -1,3 +1,6 @@
+require_relative "../lib/chopstick"
+require_relative "../lib/table"
+
 class Philosopher
   def initialize name
     @name = name
@@ -14,7 +17,7 @@ class Philosopher
   end
 
   def think
-    puts "#{name} is thinking"
+    puts "#{@name} is thinking"
   end
 
   def eat
@@ -35,3 +38,15 @@ class Philosopher
     @right_chopstick.take
   end
 end
+
+names = %w{Heraclitus Aristotle Epictetus Schopenhauer Popper}
+
+philosophers = names.map { |name| Philosopher.new(name) }
+table        = Table.new(philosophers.size)
+
+threads = philosophers.map.with_index do |philosopher, i|
+  Thread.new { philosopher.dine(table, i) }
+end
+
+threads.each(&:join)
+sleep

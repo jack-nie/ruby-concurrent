@@ -1,6 +1,6 @@
 class Chopstick
   def initialize
-    @mutux = Mutex.new
+    @mutex = Mutex.new
   end
 
   def take

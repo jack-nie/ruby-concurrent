@@ -1,6 +1,6 @@
 class Table
   def initialize number_seats
-    @chopsticks = number_seats.times.map { Chopsticks.new }
+    @chopsticks = number_seats.times.map { Chopstick.new }
   end
 
   def left_chopstick_at position
@@ -9,7 +9,7 @@ class Table
   end
 
   def right_chopstick_at position
-    index = (position + 1) % @chopsticks.size
+    index = position  % @chopsticks.size
     @chopsticks[index]
   end
 
